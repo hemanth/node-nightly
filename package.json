@@ -1,0 +1,42 @@
+{
+  "name": "node-nightly",
+  "version": "0.0.0",
+  "description": "node-nightly at your finger tips!",
+  "license": "MIT",
+  "repository": "hemanth/node-nightly",
+  "author": {
+    "name": "Hemanth.HM",
+    "email": "hemanth.hm@gmail.com",
+    "url": "h3manth.com"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "node-nightly": "./cli.js"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "files": [
+    "index.js",
+    "cli.js"
+  ],
+  "keywords": [
+    "cli-app",
+    "cli",
+    "node",
+    "nightly"
+  ],
+  "dependencies": {
+    "download": "^5.0.2",
+    "isomorphic-fetch": "^2.2.1",
+    "kexec": "^2.0.2",
+    "meow": "^3.7.0"
+  },
+  "devDependencies": {
+    "ava": "^0.12.0",
+    "xo": "^0.12.1"
+  }
+}
