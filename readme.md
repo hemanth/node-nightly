@@ -1,7 +1,4 @@
-# node-nightly [![Build Status](https://travis-ci.org/hemanth/node-nightly.svg?branch=master)](https://travis-ci.org/hemanth/node-nightly)
-
-> node-nightly at your finger tips!
-
+# node-nightly
 
 ## Install
 
