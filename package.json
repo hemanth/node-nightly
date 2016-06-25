@@ -32,11 +32,6 @@
   "dependencies": {
     "download": "^5.0.2",
     "isomorphic-fetch": "^2.2.1",
-    "kexec": "^2.0.2",
-    "meow": "^3.7.0"
-  },
-  "devDependencies": {
-    "ava": "^0.12.0",
-    "xo": "^0.12.1"
+    "kexec": "^2.0.2"
   }
 }
