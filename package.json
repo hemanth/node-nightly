@@ -32,6 +32,7 @@
   "dependencies": {
     "download": "^5.0.2",
     "isomorphic-fetch": "^2.2.1",
-    "kexec": "^2.0.2"
+    "kexec": "^2.0.2",
+    "node-nightly-version": "^1.0.0"
   }
 }
