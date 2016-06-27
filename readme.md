@@ -30,9 +30,10 @@ Debugger attached.
 Waiting for the debugger to disconnect...
 ```
 
-## TODO
+__GIF FTW!__
 
-* Auto update to the nightly version, every night :wink:
+![node-nightly](./node-nightly.gif)
+
 
 ## License
 
