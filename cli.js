@@ -19,7 +19,7 @@ if(!!~index) {
   nodeNightly.update();
 }
 
-if(!existsSync('./node-nightly')) {
+if(!existsSync(`${__dirname}/node-nightly`)) {
   //First install
   console.log('Downloading the nightly version, hang on...');
   nodeNightly.install();
@@ -29,6 +29,6 @@ if(!existsSync('./node-nightly')) {
       if(compVersion(currentVersion, latestVersion)) {
         console.log('\x1b[36m', 'New nightly available. To upgrade: `node-nightly --upgrade`' ,'\x1b[0m');
       }
-      kexec('./node-nightly/bin/node', args);
+      kexec(`${__dirname}/node-nightly/bin/node`, args);
     }).catch(console.error);
 }
