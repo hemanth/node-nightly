@@ -28,7 +28,7 @@ if(!existsSync('./node-nightly')) {
       const currentVersion = new Configstore(pkg.name).get('version');
       if(compVersion(currentVersion, latestVersion)) {
         console.log('\x1b[36m', 'New nightly available. To upgrade: `node-nightly --upgrade`' ,'\x1b[0m');
-        kexec('./node-nightly/bin/node', args);
       }
+      kexec('./node-nightly/bin/node', args);
     }).catch(console.error);
 }
