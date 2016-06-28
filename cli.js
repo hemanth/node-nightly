@@ -20,7 +20,7 @@ if(!existsSync('./node-nightly')) {
   nodeNightlyVersion().then(latestVersion => {
       const currentVersion = new Configstore(pkg.name).get('version');
       if(compVersion(currentVersion, latestVersion)) {
-          prompt('Newer version is avaible, do you want to upgrade?', ['y', 'n'])
+          prompt('Newer version is available, do you want to upgrade?', ['y', 'n'])
               .then(function(choice) {
               if(choice === 'y') {
                   console.log('Updating...')
