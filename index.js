@@ -1,5 +1,4 @@
 'use strict';
-const fetch = require('isomorphic-fetch');
 const download = require('download');
 const nodeNightlyVersion = require('node-nightly-version');
 const Configstore = require('configstore');
