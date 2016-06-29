@@ -17,7 +17,7 @@ module.exports = {
         const url = `https://nodejs.org/download/${type}/${latest}/node-${latest}-${os}-${arch}.tar`
         download(url, __dirname, {extract:true})
         .then( _ => {
-          mv(`${__dirname}/node-${latest}-${os}-${arch}`, `./node-nightly`);
+          mv(`${__dirname}/node-${latest}-${os}-${arch}`, `${__dirname}/node-nightly`);
           console.log('node-nightly is avalible on your CLI! ');
           process.exit(0);
         }).catch(err => console.error(err));
