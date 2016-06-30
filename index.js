@@ -18,7 +18,7 @@ module.exports = {
         download(url, __dirname, {extract:true})
         .then( _ => {
           mv(`${__dirname}/node-${latest}-${os}-${arch}`, `${__dirname}/node-nightly`);
-          console.log('node-nightly is avalible on your CLI! ');
+          console.log('node-nightly is available on your CLI! ');
           process.exit(0);
         }).catch(err => console.error(err));
       }).catch(err => console.error(err))
