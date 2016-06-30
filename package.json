@@ -34,7 +34,6 @@
     "download": "^5.0.2",
     "kexec": "^2.0.2",
     "node-nightly-version": "^1.0.0",
-    "rimraf": "^2.5.2",
-    "single-prompt": "^0.2.3"
+    "rimraf": "^2.5.2"
   }
 }
