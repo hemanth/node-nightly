@@ -16,7 +16,7 @@ $ node-nightly
 Downloading the nightly version, hang on...
 
 
-node-nightly is avalible on CLI!
+node-nightly is available on CLI!
 ```
 
 __And then:__
