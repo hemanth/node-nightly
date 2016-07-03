@@ -8,25 +8,28 @@ const rm = require('rimraf');
 
 module.exports = {
   install: () => {
-       nodeNightlyVersion().then(latest => {
-        const conf = new Configstore(pkg.name);
+  		let osArchString;
+      nodeNightlyVersion().then(latest => {
+      	const conf = new Configstore(pkg.name);
         conf.set('version', latest);
         const os = process.platform;
         const arch = process.arch;
         const type = 'nightly';
-        const url = `https://nodejs.org/download/${type}/${latest}/node-${latest}-${os}-${arch}.tar`
-        download(url, __dirname, {extract:true})
-        .then( _ => {
-          mv(`${__dirname}/node-${latest}-${os}-${arch}`, `${__dirname}/node-nightly`);
-          console.log('node-nightly is available on your CLI! ');
-          process.exit(0);
-        }).catch(err => console.error(err));
-      }).catch(err => console.error(err))
+        osArchString = `${latest}-${os}-${arch}`;
+        const url = `https://nodejs.org/download/${type}/${latest}/node-${osArchString}.tar`;
+        return download(url, __dirname, {extract:true});
+      })
+      .then( _ => {
+      	mv(`${__dirname}/node-${osArchString}`, `${__dirname}/node-nightly`);
+        console.log('node-nightly is available on your CLI! ');
+        process.exit(0);
+      })
+      .catch(console.error);
   },
-  update: function() {
-     console.log('Deleting old version');
-     rm.sync('./node-nightly');
-     console.log('Deleted, installing newer version..');
-     this.install();
+  update: () => {
+    console.log('Deleting old version');
+    rm.sync('./node-nightly');
+    console.log(`Deleted!\n Installing newer version..`);
+    this.install();
   }
 };
