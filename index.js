@@ -13,8 +13,8 @@ module.exports = {
         conf.set('version', latest);
         const os = process.platform;
         const arch = process.arch;
-        const type = 'nightly';
-        const url = `https://nodejs.org/download/${type}/${latest}/node-${latest}-${os}-${arch}.tar`
+        const nightlyUrl = process.env.NODEJS_ORG_NIGHTLY_MIRROR || 'https://nodejs.org/download/nightly';
+        const url = `${nightlyUrl}/${latest}/node-${latest}-${os}-${arch}.tar`;
         download(url, __dirname, {extract:true})
         .then( _ => {
           mv(`${__dirname}/node-${latest}-${os}-${arch}`, `${__dirname}/node-nightly`);
