@@ -3,7 +3,6 @@
 const kexec = require('kexec');
 const nodeNightly = require('./');
 const existsSync = require('fs').existsSync;
-const execFileSync = require('child_process').execFileSync
 const Configstore = require('configstore');
 const pkg = require('./package.json');
 const nodeNightlyVersion = require('node-nightly-version');
