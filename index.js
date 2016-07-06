@@ -5,6 +5,9 @@ const Configstore = require('configstore');
 const pkg = require('./package.json');
 const rm = require('rimraf');
 
+const extractDate = versionString => ~~versionString.split('nightly')[1].slice(0,8);
+const compVersion = (currentVersion, latestVersion) => extractDate(currentVersion) < extractDate(latestVersion);
+
 module.exports = {
   install: () => {
 		let osArchString;
@@ -35,7 +38,7 @@ module.exports = {
   	});
   },
   check: function() {
-  	return nodeNightlyVersion().then(latest => {
+  	return nodeNightlyVersion().then(latestVersion => {
   		const currentVersion = new Configstore(pkg.name).get('version');
   		if(compVersion(currentVersion, latestVersion)) {
         return true;
