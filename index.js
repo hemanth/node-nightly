@@ -4,6 +4,7 @@ const nodeNightlyVersion = require('node-nightly-version');
 const Configstore = require('configstore');
 const pkg = require('./package.json');
 const rm = require('rimraf');
+const mv = require('fs').rename;
 
 const extractDate = versionString => ~~versionString.split('nightly')[1].slice(0,8);
 const compVersion = (currentVersion, latestVersion) => extractDate(currentVersion) < extractDate(latestVersion);
@@ -22,7 +23,8 @@ module.exports = {
 			osArchString = `${latest}-${os}-${arch}`;
 			const url = `https://nodejs.org/download/${type}/${latest}/node-${osArchString}.tar.gz`;
 			return download(url, __dirname, {extract:true});
-		});
+		}).then(available)
+		.catch(console.error);
 	},
 	update: function() {
 		console.log('Checking for update...');
@@ -48,4 +50,10 @@ module.exports = {
 			return false;
 		});
 	}
+};
+
+function available() {
+	mv(`${__dirname}/node-${osArchString}`, `${__dirname}/node-nightly`);
+	console.log(`node-nightly is available on your CLI!`);
+	return true;
 };
