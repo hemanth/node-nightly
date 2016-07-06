@@ -26,7 +26,7 @@ module.exports = {
       })
       .catch(console.error);
   },
-  update: () => {
+  update: function() {
     console.log('Deleting old version');
     rm.sync('./node-nightly');
     console.log(`Deleted!\n Installing newer version..`);
