@@ -20,8 +20,8 @@ if(!!~index) {
   console.log('Downloading the nightly version, hang on...');
   nodeNightly.install();
 } else {
-  nodeNightly.check().then(update => {
-	  if(update) {
+  nodeNightly.check().then(updatedVersion => {
+	  if(updatedVersion) {
 	    console.log('\x1b[36m', 'New nightly available. To upgrade: `node-nightly --upgrade`' ,'\x1b[0m');
 	  }
 	  kexec(`${__dirname}/node-nightly/bin/node`, args);
