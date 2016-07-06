@@ -15,10 +15,12 @@ let args = process.argv.slice(2);
 let index = args.indexOf('--upgrade');
 if(!!~index) {
   args = args.splice(index, 1);
-  nodeNightly.update();
-}
-
-if(!existsSync(`${__dirname}/node-nightly`)) {
+  nodeNightly.update().then(_ => {
+    mv(`${__dirname}/node-${osArchString}`, `${__dirname}/node-nightly`);
+    console.log('node-nightly is available on your CLI! ');
+    process.exit(0);
+  })
+} else if(!existsSync(`${__dirname}/node-nightly`)) {
   //First install
   console.log('Downloading the nightly version, hang on...');
   nodeNightly.install();
