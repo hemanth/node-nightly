@@ -9,43 +9,43 @@ const extractDate = versionString => ~~versionString.split('nightly')[1].slice(0
 const compVersion = (currentVersion, latestVersion) => extractDate(currentVersion) < extractDate(latestVersion);
 
 module.exports = {
-  install: (version) => {
+	install: (version) => {
 		let osArchString,nodeNightlyVer;
 		nodeNightlyVer = version !== undefined ? Promise.resolve(version) : nodeNightlyVersion();
 
-    return nodeNightlyVer.then(latest => {
-    	const conf = new Configstore(pkg.name);
-      conf.set('version', latest);
-      const os = process.platform;
-      const arch = process.arch;
-      const type = 'nightly';
-      osArchString = `${latest}-${os}-${arch}`;
-      const url = `https://nodejs.org/download/${type}/${latest}/node-${osArchString}.tar.gz`;
-      return download(url, __dirname, {extract:true});
-    });
-  },
-  update: function() {
-  	console.log('Checking for update...');
-  	return this.check().then(updatedVersion => {
-  		process.stdout.write('\x1B[2J\x1B[0f'); //clear previous console
-  		if(updatedVersion) {
-  			//update found
-  			console.log('Deleting old version');
-    		rm.sync('./node-nightly');
-    		console.log(`Deleted!\nInstalling newer version..`);
-    		return this.install(updatedVersion);
-  		}
-  		//reject this promise if update is not found
-  		return Promise.reject('You are using latest version already.');
-  	});
-  },
-  check: function() {
-  	return nodeNightlyVersion().then(latestVersion => {
-  		const currentVersion = new Configstore(pkg.name).get('version');
-  		if(compVersion(currentVersion, latestVersion)) {
-        return latestVersion;
-      }
-      return false;
-  	});
-  }
+		return nodeNightlyVer.then(latest => {
+			const conf = new Configstore(pkg.name);
+			conf.set('version', latest);
+			const os = process.platform;
+			const arch = process.arch;
+			const type = 'nightly';
+			osArchString = `${latest}-${os}-${arch}`;
+			const url = `https://nodejs.org/download/${type}/${latest}/node-${osArchString}.tar.gz`;
+			return download(url, __dirname, {extract:true});
+		});
+	},
+	update: function() {
+		console.log('Checking for update...');
+		return this.check().then(updatedVersion => {
+			process.stdout.write('\x1B[2J\x1B[0f'); //clear previous console
+			if(updatedVersion) {
+				//update found
+				console.log('Deleting old version');
+				rm.sync('./node-nightly');
+				console.log(`Deleted!\nInstalling newer version..`);
+				return this.install(updatedVersion);
+			}
+			//reject this promise if update is not found
+			return Promise.reject('You are using latest version already.');
+		});
+	},
+	check: function() {
+		return nodeNightlyVersion().then(latestVersion => {
+			const currentVersion = new Configstore(pkg.name).get('version');
+			if(compVersion(currentVersion, latestVersion)) {
+				return latestVersion;
+			}
+			return false;
+		});
+	}
 };
