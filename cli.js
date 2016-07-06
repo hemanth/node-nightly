@@ -12,15 +12,13 @@ let index = args.indexOf('--upgrade');
 if(!!~index) {
 	nodeNightly.update().then(_ => {
 		mv(`${__dirname}/node-${osArchString}`, `${__dirname}/node-nightly`);
-		console.log('node-nightly is available on your CLI! ');
+		available();
 		process.exit(0);
 	}).catch(console.log);
 } else if(!existsSync(`${__dirname}/node-nightly`)) {
 	//First install
 	console.log('Downloading the nightly version, hang on...');
-	nodeNightly.install().then(_ => {
-		console.log('node-nightly is available on your CLI! ');
-	}).catch(console.error);
+	nodeNightly.install().then(available).catch(console.error);
 } else {
 	nodeNightly.check().then(updatedVersion => {
 		if(updatedVersion) {
@@ -28,4 +26,8 @@ if(!!~index) {
 		}
 		kexec(`${__dirname}/node-nightly/bin/node`, args);
 	}).catch(console.error);
+}
+
+function available() {
+	console.log(`node-nightly is available on your CLI!`);
 }
