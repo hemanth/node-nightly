@@ -3,8 +3,6 @@
 const kexec = require('kexec');
 const nodeNightly = require('./');
 const existsSync = require('fs').existsSync;
-const Configstore = require('configstore');
-const pkg = require('./package.json');
 const mv = require('fs').rename;
 
 let args = process.argv.slice(2);
