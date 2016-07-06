@@ -34,7 +34,7 @@ module.exports = {
   		return Promise.reject('You are using latest version already.');
   	});
   },
-  checkU: function() {
+  check: function() {
   	return nodeNightlyVersion().then(latest => {
   		const currentVersion = new Configstore(pkg.name).get('version');
   		if(compVersion(currentVersion, latestVersion)) {
