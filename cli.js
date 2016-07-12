@@ -9,11 +9,16 @@ let args = process.argv.slice(2);
 // Check for upgrade.
 let index = args.indexOf('--upgrade');
 if(!!~index) {
-	nodeNightly.update().then(process.exit(0)).catch(console.log);
+	nodeNightly.update().then(res => {
+		if(res !== 'Installed') {
+			console.log(res);
+		}
+		process.exit(0);
+	}).catch(console.error);
 } else if(!existsSync(`${__dirname}/node-nightly`)) {
 	//First install
 	console.log('Downloading the nightly version, hang on...');
-	nodeNightly.install().then(process.exit(0));
+	nodeNightly.install().catch(console.error);
 } else {
 	nodeNightly.check().then(updatedVersion => {
 		if(updatedVersion) {

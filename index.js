@@ -24,7 +24,6 @@ module.exports = {
 			const url = `https://nodejs.org/download/${type}/${latest}/node-${osArchString}.tar.gz`;
 			return download(url, __dirname, {extract:true});
 		}).then(available)
-		.catch(console.error);
 	},
 	update: function() {
 		console.log('Checking for update...');
@@ -38,7 +37,7 @@ module.exports = {
 				return this.install(updatedVersion);
 			}
 			//reject this promise if update is not found
-			return Promise.reject('You are using latest version already.');
+			return 'You are using latest version already.';
 		});
 	},
 	check: function() {
@@ -55,5 +54,5 @@ module.exports = {
 function available() {
 	mv(`${__dirname}/node-${osArchString}`, `${__dirname}/node-nightly`);
 	console.log(`node-nightly is available on your CLI!`);
-	return true;
+	return 'Installed';
 };
