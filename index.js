@@ -32,7 +32,6 @@ module.exports = {
 	update: function() {
 		console.log('Checking for update...');
 		return this.check().then(updatedVersion => {
-			process.stdout.write('\x1B[2J\x1B[0f'); //clear previous console
 			if(updatedVersion) {
 				//update found
 				console.log('Deleting old version');
@@ -40,7 +39,6 @@ module.exports = {
 				console.log(`Deleted!\nInstalling newer version..`);
 				return this.install(updatedVersion);
 			}
-			//reject this promise if update is not found
 			return 'You are using latest version already.';
 		});
 	},
