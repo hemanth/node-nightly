@@ -11,7 +11,7 @@ const compVersion = (currentVersion, latestVersion) => extractDate(currentVersio
 
 module.exports = {
 	install: (version) => {
-		let osArchString,nodeNightlyVer;
+		let osArchString, nodeNightlyVer;
 		nodeNightlyVer = version !== undefined ? Promise.resolve(version) : nodeNightlyVersion();
 
 		return nodeNightlyVer.then(latest => {
@@ -23,7 +23,11 @@ module.exports = {
 			osArchString = `${latest}-${os}-${arch}`;
 			const url = `https://nodejs.org/download/${type}/${latest}/node-${osArchString}.tar.gz`;
 			return download(url, __dirname, {extract:true});
-		}).then(available)
+		}).then(_ => {
+			mv(`${__dirname}/node-${osArchString}`, `${__dirname}/node-nightly`);
+			console.log(`node-nightly is available on your CLI!`);
+			return 'Installed';
+		})
 	},
 	update: function() {
 		console.log('Checking for update...');
@@ -51,8 +55,3 @@ module.exports = {
 	}
 };
 
-function available() {
-	mv(`${__dirname}/node-${osArchString}`, `${__dirname}/node-nightly`);
-	console.log(`node-nightly is available on your CLI!`);
-	return 'Installed';
-};
