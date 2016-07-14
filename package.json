@@ -13,6 +13,9 @@
     "test": "node cli.js -v"
   },
   "preferGlobal": true,
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "bin": {
     "node-nightly": "./cli.js"
   },
