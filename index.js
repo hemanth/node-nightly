@@ -4,7 +4,7 @@ const nodeNightlyVersion = require('node-nightly-version');
 const Configstore = require('configstore');
 const pkg = require('./package.json');
 const rm = require('rimraf');
-const mv = require('fs').rename;
+const mv = require('graceful-fs').rename;
 
 const extractDate = versionString => ~~versionString.split('nightly')[1].slice(0,8);
 const compVersion = (currentVersion, latestVersion) => extractDate(currentVersion) < extractDate(latestVersion);
