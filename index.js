@@ -7,7 +7,7 @@ const rm = require('rimraf');
 const realFs = require('fs');
 const gracefulFs = require('graceful-fs');
 gracefulFs.gracefulify(realFs);
-const mv = realFs.rename;
+const mv = gracefulFs.rename;
 
 const extractDate = versionString => ~~versionString.split('nightly')[1].slice(0,8);
 const compVersion = (currentVersion, latestVersion) => extractDate(currentVersion) < extractDate(latestVersion);

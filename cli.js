@@ -2,7 +2,7 @@
 'use strict';
 const kexec = require('kexec');
 const nodeNightly = require('./');
-const existsSync = require('fs').existsSync;
+const existsSync = require('graceful-fs').existsSync;
 
 let args = process.argv.slice(2);
 
