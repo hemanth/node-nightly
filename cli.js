@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 'use strict';
-const kexec = require('kexec');
+const spawn = require('cross-spawn').spawn;
 const nodeNightly = require('./');
 const existsSync = require('graceful-fs').existsSync;
 
@@ -24,6 +24,6 @@ if(!!~index) {
 		if(updatedVersion) {
 			console.log('\x1b[36m', 'New nightly available. To upgrade: `node-nightly --upgrade`' ,'\x1b[0m');
 		}
-		kexec(`${__dirname}/node-nightly/bin/node`, args);
+		spawn(`${__dirname}/node-nightly/bin/node`, args, {stdio: 'inherit', env: process.env});
 	}).catch(console.error);
 }
