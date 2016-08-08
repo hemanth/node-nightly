@@ -24,6 +24,7 @@ if(!!~index) {
 		if(updatedVersion) {
 			console.log('\x1b[36m', 'New nightly available. To upgrade: `node-nightly --upgrade`' ,'\x1b[0m');
 		}
-		spawn(`${__dirname}/node-nightly/bin/node`, args, {stdio: 'inherit', env: process.env});
+		//spawn(`${__dirname}/node-nightly/bin/node`, args, {stdio: 'inherit', env: process.env});
+		spawn(`${__dirname}/node-nightly/node`, args, {stdio: 'inherit', env: process.env}); //just for testing on windows
 	}).catch(console.error);
 }
