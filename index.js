@@ -20,11 +20,11 @@ module.exports = {
 		return nodeNightlyVer.then(latest => {
 			const conf = new Configstore(pkg.name);
 			conf.set('version', latest);
-			const os = process.platform;
+			const os = 'win';
 			const arch = process.arch;
 			const type = 'nightly';
 			osArchString = `${latest}-${os}-${arch}`;
-			const url = `https://nodejs.org/download/${type}/${latest}/node-${osArchString}.tar.gz`;
+			const url = `https://nodejs.org/download/${type}/${latest}/node-${osArchString}.zip`;
 			return download(url, __dirname, {extract:true});
 		}).then(_ => {
 			mv(`${__dirname}/node-${osArchString}`, `${__dirname}/node-nightly`);
