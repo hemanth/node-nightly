@@ -21,10 +21,11 @@ module.exports = {
 			const conf = new Configstore(pkg.name);
 			conf.set('version', latest);
 			const os = process.platform  === 'win32' ? 'win' : process.platform;
+			const extention = os === 'win'? 'zip': 'tar.gz';
 			const arch = process.arch;
 			const type = 'nightly';
 			osArchString = `${latest}-${os}-${arch}`;
-			const url = `https://nodejs.org/download/${type}/${latest}/node-${osArchString}.zip`;
+			const url = `https://nodejs.org/download/${type}/${latest}/node-${osArchString}.{extention}`;
 			return download(url, __dirname, {extract:true});
 		}).then(_ => {
 			mv(`${__dirname}/node-${osArchString}`, `${__dirname}/node-nightly`);
