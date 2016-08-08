@@ -13,26 +13,41 @@ const extractDate = versionString => ~~versionString.split('nightly')[1].slice(0
 const compVersion = (currentVersion, latestVersion) => extractDate(currentVersion) < extractDate(latestVersion);
 
 module.exports = {
+
 	install: (version) => {
+
 		let osArchString, nodeNightlyVer;
 		nodeNightlyVer = version !== undefined ? Promise.resolve(version) : nodeNightlyVersion();
 
-		return nodeNightlyVer.then(latest => {
+		return nodeNightlyVersion().then(latest => {
+
 			const conf = new Configstore(pkg.name);
 			conf.set('version', latest);
-			const os = process.platform;
+			const platform = process.platform;
+			//Window's test start
+			const isWin = /^win/.test(platform);
+			const os = isWin? 'win': platform;
+			const extension = isWin? 'zip': 'tar.gz';
+			//window's test end
 			const arch = process.arch;
 			const type = 'nightly';
 			osArchString = `${latest}-${os}-${arch}`;
-			const url = `https://nodejs.org/download/${type}/${latest}/node-${osArchString}.tar.gz`;
+			const url = `https://nodejs.org/download/${type}/${latest}/node-${osArchString}.${extension}`;
 			return download(url, __dirname, {extract:true});
+
 		}).then(_ => {
+
+			console.log('Finalizing stuff...!');
 			mv(`${__dirname}/node-${osArchString}`, `${__dirname}/node-nightly`);
-			console.log(`node-nightly is available on your CLI!`);
+			console.log('node-nightly is available on your CLI! ');
 			return 'Installed';
-		})
+
+		});
+
 	},
+
 	update: function() {
+
 		console.log('Checking for update...');
 		return this.check().then(updatedVersion => {
 			if(updatedVersion) {
@@ -44,8 +59,11 @@ module.exports = {
 			}
 			return 'You are using latest version already.';
 		});
+
 	},
+
 	check: function() {
+
 		return nodeNightlyVersion().then(latestVersion => {
 			const currentVersion = new Configstore(pkg.name).get('version');
 			if(compVersion(currentVersion, latestVersion)) {
@@ -53,6 +71,7 @@ module.exports = {
 			}
 			return false;
 		});
-	}
-};
 
+	}
+
+};
