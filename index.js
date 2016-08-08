@@ -20,7 +20,8 @@ module.exports = {
 		return nodeNightlyVer.then(latest => {
 			const conf = new Configstore(pkg.name);
 			conf.set('version', latest);
-			const os = 'win';
+			//const os = process.platform;
+			const os = 'win'; // just testing for my environment 
 			const arch = process.arch;
 			const type = 'nightly';
 			osArchString = `${latest}-${os}-${arch}`;
