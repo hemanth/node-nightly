@@ -25,7 +25,7 @@ module.exports = {
 			const arch = process.arch;
 			const type = 'nightly';
 			osArchString = `${latest}-${os}-${arch}`;
-			const url = `https://nodejs.org/download/${type}/${latest}/node-${osArchString}.{extention}`;
+			const url = `https://nodejs.org/download/${type}/${latest}/node-${osArchString}.${extention}`;
 			return download(url, __dirname, {extract:true});
 		}).then(_ => {
 			mv(`${__dirname}/node-${osArchString}`, `${__dirname}/node-nightly`);
