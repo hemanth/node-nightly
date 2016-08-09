@@ -9,7 +9,7 @@ const gracefulFs = require('graceful-fs');
 gracefulFs.gracefulify(realFs);
 const mv = gracefulFs.rename;
 
-const extractDate = versionString => ~~versionString.split('nightly')[1].slice(0,8);
+const extractDate = versionString => ~~versionString.split('nightly')[1].slice(0, 8);
 const compVersion = (currentVersion, latestVersion) => extractDate(currentVersion) < extractDate(latestVersion);
 
 module.exports = {
@@ -20,12 +20,15 @@ module.exports = {
 		return nodeNightlyVer.then(latest => {
 			const conf = new Configstore(pkg.name);
 			conf.set('version', latest);
-			const os = process.platform;
+			const os = process.platform === 'win32' ? 'win' : process.platform;
+			const extention = os === 'win' ? 'zip' : 'tar.gz';
 			const arch = process.arch;
 			const type = 'nightly';
 			osArchString = `${latest}-${os}-${arch}`;
-			const url = `https://nodejs.org/download/${type}/${latest}/node-${osArchString}.tar.gz`;
-			return download(url, __dirname, {extract:true});
+			const url = `https://nodejs.org/download/${type}/${latest}/node-${osArchString}.${extention}`;
+			return download(url, __dirname, {
+				extract: true
+			});
 		}).then(_ => {
 			mv(`${__dirname}/node-${osArchString}`, `${__dirname}/node-nightly`);
 			console.log(`node-nightly is available on your CLI!`);
@@ -35,7 +38,7 @@ module.exports = {
 	update: function() {
 		console.log('Checking for update...');
 		return this.check().then(updatedVersion => {
-			if(updatedVersion) {
+			if (updatedVersion) {
 				//update found
 				console.log('Deleting old version');
 				rm.sync('./node-nightly');
@@ -48,11 +51,10 @@ module.exports = {
 	check: function() {
 		return nodeNightlyVersion().then(latestVersion => {
 			const currentVersion = new Configstore(pkg.name).get('version');
-			if(compVersion(currentVersion, latestVersion)) {
+			if (compVersion(currentVersion, latestVersion)) {
 				return latestVersion;
 			}
 			return false;
 		});
 	}
 };
-

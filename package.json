@@ -34,9 +34,9 @@
   ],
   "dependencies": {
     "configstore": "^2.0.0",
+    "cross-spawn": "4.0.0",
     "download": "^5.0.2",
     "graceful-fs": "^4.1.4",
-    "kexec": "^2.0.2",
     "node-nightly-version": "^1.0.0",
     "rimraf": "^2.5.2"
   }
