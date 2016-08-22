@@ -38,7 +38,7 @@
     "download": "^5.0.2",
     "graceful-fs": "^4.1.6",
     "is-online": "^5.1.2",
-    "node-nightly-version": "^1.0.4",
+    "node-nightly-version": "^1.0.6",
     "rimraf": "^2.5.4"
   }
 }
