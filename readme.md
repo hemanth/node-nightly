@@ -30,6 +30,11 @@ Debugger attached.
 Waiting for the debugger to disconnect...
 ```
 
+## Additional commands
+
+ 1. `node-nightly --version {version}` Install a specific nightly. This is useful if the nightly is broken.
+ 2. `node-nightly --upgrade` Install the latest nightly
+
 __GIF FTW!__
 
 ![node-nightly](./node-nightly.gif)

@@ -9,9 +9,14 @@ const os = process.platform  === 'win32' ? 'win' : process.platform;
 let args = process.argv.slice(2);
 
 // Check for upgrade.
-let index = args.indexOf('--upgrade');
-if(!!~index) {
+let upgradeIndex = args.indexOf('--upgrade'),
+    versionIndex = args.indexOf('--version'),
+    version = versionIndex < 0 ? null : args[versionIndex + 1];
 
+if (version) {
+	nodeNightly.install(version).catch(console.error);
+}
+else if(!!~upgradeIndex) {
 	reportIfOffline();
 	nodeNightly.update().then(res => {
 		if(res !== 'Installed') {
