@@ -23,8 +23,8 @@ module.exports = {
             extention = os === 'win' ? 'zip' : 'tar.gz',
             arch = process.arch,
             type = 'nightly',
-            osArchString = `${version}-${os}-${arch}`,
-            url = `https://nodejs.org/download/${type}/${version}/node-${osArchString}.${extention}`,
+            osArchString = `${latest}-${os}-${arch}`,
+            url = `https://nodejs.org/download/${type}/${latest}/node-${osArchString}.${extention}`,
             nightlyDir = `${__dirname}/node-nightly`;
 
       const extractedTo = `${__dirname}/node-${osArchString}`;
