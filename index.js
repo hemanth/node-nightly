@@ -38,7 +38,7 @@ module.exports = {
       }).then(_ => {
         if (gracefulFs.existsSync(nightlyDir)) {
           console.log('Deleting old version');
-          rm.sync('./node-nightly');
+          rm.sync(nightlyDir);
           console.log(`Deleted!\nInstalling newer version..`);
         }
 
