@@ -21,7 +21,7 @@ module.exports = {
 		return nodeNightlyVer.then(latest => {
       const os = process.platform === 'win32' ? 'win' : process.platform,
             extention = os === 'win' ? 'zip' : 'tar.gz',
-            arch = process.arch,
+            arch = process.arch === 'ia32' ? 'x86' : process.arch,
             type = 'nightly',
             osArchString = `${latest}-${os}-${arch}`,
             url = `https://nodejs.org/download/${type}/${latest}/node-${osArchString}.${extention}`,
