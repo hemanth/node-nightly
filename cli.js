@@ -15,16 +15,15 @@ let upgradeIndex = args.indexOf('--upgrade'),
 
 if (version) {
 	nodeNightly.install(version).catch(console.error);
-}
-else if(!!~upgradeIndex) {
+} else if (!!~upgradeIndex) {
 	reportIfOffline();
 	nodeNightly.update().then(res => {
-		if(res !== 'Installed') {
+		if (res !== 'Installed') {
 			console.log(res);
 		}
 		process.exit(0);
 	}).catch(console.error);
-} else if(!existsSync(`${__dirname}/node-nightly`)) {
+} else if (!existsSync(`${__dirname}/node-nightly`)) {
 
 	console.log('Downloading the nightly version, hang on...');
 	reportIfOffline();
@@ -33,12 +32,12 @@ else if(!!~upgradeIndex) {
 } else {
 
 	nodeNightly.check().then(updatedVersion => {
-		if(updatedVersion) {
+		if (updatedVersion) {
 			console.log('\x1b[36m', 'New nightly available. To upgrade: `node-nightly --upgrade`' ,'\x1b[0m');
 		}
-		if(os === 'win'){
+		if (os === 'win') {
 			spawn(`${__dirname}/node-nightly/node`, args, {stdio: 'inherit', env: process.env});
-		} else{
+		} else {
 			spawn(`${__dirname}/node-nightly/bin/node`, args, {stdio: 'inherit', env: process.env});
 		}
 	}).catch(console.error);
@@ -46,7 +45,7 @@ else if(!!~upgradeIndex) {
 
 function reportIfOffline() {
 	isOnline((err, online) => {
-		if(!online) {
+		if (!online) {
 			//offline
 			console.info('\x1b[31m', 'Please check your internet connectivity.','\x1b[0m');
 			process.exit(0);
