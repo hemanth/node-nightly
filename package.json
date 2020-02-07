@@ -33,7 +33,7 @@
     "nightly"
   ],
   "dependencies": {
-    "configstore": "^2.0.0",
+    "configstore": "^5.0.0",
     "cross-spawn": "4.0.0",
     "download": "^5.0.2",
     "graceful-fs": "^4.1.6",
