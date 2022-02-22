@@ -35,7 +35,7 @@
   "dependencies": {
     "configstore": "^5.0.0",
     "cross-spawn": "4.0.0",
-    "download": "^5.0.2",
+    "download": "^6.1.0",
     "graceful-fs": "^4.1.6",
     "is-online": "^5.1.2",
     "node-nightly-version": "^1.0.6",
