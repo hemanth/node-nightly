@@ -1,18 +1,25 @@
 'use strict';
-const download = require('download');
-const nodeNightlyVersion = require('node-nightly-version');
-const Configstore = require('configstore');
-const pkg = require('./package.json');
-const rm = require('rimraf');
-const realFs = require('fs');
-const gracefulFs = require('graceful-fs');
+import download from 'download';
+import nodeNightlyVersion from 'node-nightly-version';
+import Configstore from 'configstore';
+import rm from 'rimraf';
+import realFs from 'fs';
+import gracefulFs from 'graceful-fs';
+import path from 'path';
+import {fileURLToPath} from 'url';
+
+const pkg = JSON.parse(gracefulFs.readFileSync('./package.json', 'utf-8'));
+
 gracefulFs.gracefulify(realFs);
 const mv = gracefulFs.renameSync;
 
-const extractDate = versionString => ~~versionString.split('nightly')[1].slice(0, 8);
+const extractDate = versionString => ~~versionString.split('nightly'[1].slice(0, 8));
 const compVersion = (currentVersion, latestVersion) => extractDate(currentVersion) < extractDate(latestVersion);
 
-module.exports = {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default {
 
 	install: (version) => {
 		let osArchString, nodeNightlyVer;

@@ -1,12 +1,19 @@
 #!/usr/bin/env node
 'use strict';
-const spawn = require('cross-spawn').spawn;
-const nodeNightly = require('./');
-const existsSync = require('graceful-fs').existsSync;
-const isOnline = require('is-online');
+import {spawn} from 'cross-spawn';
+import nodeNightly from './index.js';
+import gracefulFs from 'graceful-fs';
+import isOnline from 'is-online';
+import path from 'path';
+import {fileURLToPath} from 'url';
+
+const {existsSync} = gracefulFs;
 
 const os = process.platform  === 'win32' ? 'win' : process.platform;
 let args = process.argv.slice(2);
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Check for upgrade.
 let upgradeIndex = args.indexOf('--upgrade'),
