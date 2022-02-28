@@ -8,7 +8,10 @@ import gracefulFs from 'graceful-fs';
 import path from 'path';
 import {fileURLToPath} from 'url';
 
-const pkg = JSON.parse(gracefulFs.readFileSync('./package.json', 'utf-8'));
+//import * as pkg from "./package.json"
+
+const pkg = {name: 'node-nightly'}
+
 
 gracefulFs.gracefulify(realFs);
 const mv = gracefulFs.renameSync;
