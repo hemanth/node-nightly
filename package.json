@@ -38,7 +38,7 @@
     "cross-spawn": "7.0.3",
     "download": "^8.0.0",
     "graceful-fs": "^4.2.9",
-    "is-online": "^9.0.1",
+    "is-online": "^10.0.0",
     "node-nightly-version": "^1.0.6",
     "rimraf": "^3.0.2"
   }
