@@ -35,7 +35,7 @@
   ],
   "dependencies": {
     "configstore": "^6.0.0",
-    "cross-spawn": "7.0.3",
+    "cross-spawn": "7.0.5",
     "download": "^8.0.0",
     "graceful-fs": "^4.2.9",
     "is-online": "^9.0.1",
