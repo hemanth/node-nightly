@@ -1,6 +1,6 @@
 {
   "name": "node-nightly",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "description": "node-nightly at your finger tips!",
   "license": "MIT",
   "repository": "hemanth/node-nightly",
@@ -11,7 +11,7 @@
   },
   "type": "module",
   "scripts": {
-    "test": "node cli.js -v"
+    "test": "node --check index.js"
   },
   "preferGlobal": true,
   "publishConfig": {
@@ -34,12 +34,12 @@
     "nightly"
   ],
   "dependencies": {
-    "configstore": "^6.0.0",
-    "cross-spawn": "7.0.3",
+    "configstore": "^8.0.0",
+    "cross-spawn": "^7.0.6",
     "download": "^8.0.0",
-    "graceful-fs": "^4.2.9",
-    "is-online": "^9.0.1",
+    "graceful-fs": "^4.2.11",
+    "is-online": "^12.0.2",
     "node-nightly-version": "^1.0.6",
-    "rimraf": "^3.0.2"
+    "rimraf": "^6.1.3"
   }
 }
